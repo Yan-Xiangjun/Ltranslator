@@ -25,6 +25,7 @@ class Form(QMainWindow):
         self.ui.text_subject.addItems(config[list(config.keys())[0]])
         self.ui.text_config.addItems(list(config.keys())[1:])
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
+        self.ui.text_summary.setVisible(False)
         self.change_config()
         self.last_content = ''
 

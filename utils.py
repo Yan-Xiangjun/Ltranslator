@@ -1,6 +1,5 @@
 from openai import OpenAI
 from pynput import keyboard
-from pynput import mouse
 import time
 import re
 
