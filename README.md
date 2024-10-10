@@ -1,7 +1,15 @@
 # Ltranslator
 
 #### 介绍
-完全基于大模型的跨平台文献翻译工具，知云Xtranslator的开源平替
+目前，现有的文献翻译软件包括两类，一类是将翻译器与PDF阅读器捆绑在一起，必须在指定的PDF阅读器中打开文件才能进行翻译，如[小绿鲸](https://www.xljsci.com/)和[知云文献翻译](https://www.zhiyunwenxian.cn/)。另一类是将翻译器与PDF阅读器分离，用户可以在任何软件中选中文本、启动翻译，其适用范围更广，如知云团队开发的[Xtranslator](https://www.zhiyunwenxian.cn/winx.html)。
+
+文献翻译软件所使用的翻译方式也有两种，一种是调用百度、有道等传统翻译引擎进行翻译，另一种是调用大语言模型进行翻译。一般而言，后者的翻译效果要优于前者。此外，得益于大模型API的大幅度降价，从大模型厂商处自行申请API Key用于文献翻译已经是一种非常经济的做法。目前，对于能力介于GPT-3.5级别和GPT-4级别之间的大模型，每百万token的售价大约在1元左右，如果每天消耗1万token，则一年的费用也仅有3.65元，这还不包括大模型厂商提供的免费额度。
+
+Xtranslator的Windows版虽然提供了大模型翻译功能，但截至2024-10-10，Xtranslator的最新版（2.8.0C）只支持GPT和通义千问两种大模型，此外，如果要使用大模型翻译功能，还需要向知云购买API Key，笔者尝试将自己在阿里云申请的通义千问API Key填写在Xtranslator中，结果软件出现报错，提示API Key存在错误，最终无法使用大模型翻译功能。
+
+此外，Xtranslator使用的是非跨平台技术，Windows版和Mac版需要用不同的框架进行开发，无法做到“一次编写，处处运行”，Mac版的功能与Windows版相比存在欠缺，且至今没有推出Linux版。
+
+Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操作方式与Xtranslator相似，但支持任何具有OpenAI-compatible API的云端大模型和本地大模型，支持Windows、Linux和Mac系统，可以成为Xtranslator的开源平替。
 
 #### 软件架构
 使用Python中的openai库调用大语言模型

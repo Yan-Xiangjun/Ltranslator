@@ -28,6 +28,7 @@ class Form(QMainWindow):
         self.ui.text_summary.setVisible(False)
         self.change_config()
         self.last_content = ''
+        self.can_remove = True
 
         def on_press(key):
             if not self.ui.bu_switch.isChecked():
@@ -101,6 +102,7 @@ class Form(QMainWindow):
         if summary:
             Thread(target=do_translate,
                    args=(self.ui.text_summary, f'请用中文简要概括论文中这些文字的内容：\n{content}\n注意，你的概括应简明扼要，准确反映主旨，字数不要超过150字。')).start()
+        self.can_remove = True
 
     def change_summary(self):
         self.ui.text_summary.setVisible(self.ui.bu_summary.isChecked())
@@ -135,6 +137,9 @@ class Form(QMainWindow):
             self.ui.text_subject.setVisible(True)
 
     def append_text(self):
+        if self.can_remove:
+            self.ui.text_content.setPlainText('')
+            self.can_remove = False
         content = clipboard.paste()
         content = process_new_line(content)
         content0 = self.ui.text_content.toPlainText()

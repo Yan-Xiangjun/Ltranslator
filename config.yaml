@@ -4,7 +4,7 @@
     - Civil Engineering
 GLM:
   key: key
-  model: glm-4-airx
+  model: glm-4-air
   url: https://open.bigmodel.cn/api/paas/v4/
 deepseek:
   key: key
