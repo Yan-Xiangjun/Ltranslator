@@ -79,14 +79,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.bu_send)
 
-        self.bu_append = QPushButton(self.centralwidget)
-        self.bu_append.setObjectName(u"bu_append")
-        sizePolicy.setHeightForWidth(self.bu_append.sizePolicy().hasHeightForWidth())
-        self.bu_append.setSizePolicy(sizePolicy)
-        self.bu_append.setMaximumSize(QSize(50, 16777215))
-
-        self.verticalLayout_2.addWidget(self.bu_append)
-
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
@@ -261,7 +253,6 @@ class Ui_MainWindow(object):
         self.bu_top.clicked.connect(MainWindow.change_top)
         self.text_config.currentIndexChanged.connect(MainWindow.change_config)
         self.bu_fold.clicked.connect(MainWindow.change_fold)
-        self.bu_append.clicked.connect(MainWindow.append_text)
         self.bu_clear.clicked.connect(self.text_content.clear)
         self.bu_summary.clicked.connect(MainWindow.change_summary)
 
@@ -278,7 +269,6 @@ class Ui_MainWindow(object):
         self.bu_scroll.setText(QCoreApplication.translate("MainWindow", u"\u6eda\u52a8", None))
         self.bu_summary.setText(QCoreApplication.translate("MainWindow", u"\u6458\u8981", None))
         self.bu_send.setText(QCoreApplication.translate("MainWindow", u"\u53d1\u9001", None))
-        self.bu_append.setText(QCoreApplication.translate("MainWindow", u"\u8ffd\u52a0", None))
         self.bu_clear.setText(QCoreApplication.translate("MainWindow", u"\u6e05\u7a7a", None))
         self.label_title.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None))
         self.label_subject.setText(QCoreApplication.translate("MainWindow", u"\u5b66\u79d1", None))
