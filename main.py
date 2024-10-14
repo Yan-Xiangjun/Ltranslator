@@ -34,15 +34,15 @@ class Form(QMainWindow):
             if not self.ui.bu_switch.isChecked():
                 return
             try:
-                if key.char == '\x18':  # ctrl+x
+                if key == keyboard.Key.caps_lock:
+                    copy_to_clipboard()
+                    self.signal.emit((self.append_text,))
+                elif key.char == '\x18':  # ctrl+x
                     copy_to_clipboard()
                     content = clipboard.paste()
                     content = process_new_line(content)
                     self.signal.emit((self.ui.text_content.setPlainText, content))
                     self.signal.emit((self.send,))
-                elif key.char == '\x1a':  # ctrl+z
-                    copy_to_clipboard()
-                    self.signal.emit((self.append_text,))
             except AttributeError:
                 pass
 
