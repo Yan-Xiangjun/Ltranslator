@@ -41,7 +41,7 @@ Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操
     |摘要|按下后，在翻译的同时还会自动生成摘要|
     |发送|将待翻译的原文发送给大模型，开始翻译|
     |清空|清空原文文本框|
-3.  快捷键：选中文本后，按“Ctrl+X”立即启动翻译，按“Ctrl+Z”将选中的文本追加到待翻译的原文中
+3.  快捷键：选中文本后，按Ctrl+X立即启动翻译，按CapsLock将选中的文本追加到待翻译的原文中
 3.  调用本地大模型：使用[llama.cpp](https://github.com/ggerganov/llama.cpp)或[vllm](https://github.com/vllm-project/vllm)等工具启动一个OpenAI-compatible server，再修改config.yaml中“本地”选项的内容即可
 
 
