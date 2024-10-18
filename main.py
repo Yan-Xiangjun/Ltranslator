@@ -5,7 +5,12 @@ from threading import Thread
 from threading import Lock
 import yaml
 from time import time
+import os
+import PySide2
 
+dirname = os.path.dirname(PySide2.__file__)
+plugin_path = os.path.join(dirname, 'plugins', 'platforms')
+os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = plugin_path
 lock = Lock()
 with open('config.yaml', 'r', encoding='utf-8') as f:
     config = yaml.full_load(f)
