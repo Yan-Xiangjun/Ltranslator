@@ -1,0 +1,26 @@
+学科:
+    - ''
+    - Artificial Intelligence
+    - Civil Engineering
+GLM:
+  key: key
+  model: glm-4-air
+  url: https://open.bigmodel.cn/api/paas/v4/
+deepseek:
+  key: key
+  model: deepseek-chat
+  url: https://api.deepseek.com
+阿里: 
+  key: key
+  model: qwen-long
+  url: https://dashscope.aliyuncs.com/compatible-mode/v1
+讯飞:
+  key: key
+  model: 4.0Ultra
+  url: https://spark-api-open.xf-yun.com/v1
+本地:
+  key: key
+  model: model
+  url: http://localhost:8080/v1
+
+
