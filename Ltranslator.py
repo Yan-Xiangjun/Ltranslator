@@ -47,7 +47,7 @@ class Ui_MainWindow(object):
         self.bu_top.setSizePolicy(sizePolicy)
         self.bu_top.setMaximumSize(QSize(50, 16777215))
         self.bu_top.setCheckable(True)
-        self.bu_top.setChecked(True)
+        self.bu_top.setChecked(False)
 
         self.verticalLayout_2.addWidget(self.bu_top)
 

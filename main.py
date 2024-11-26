@@ -31,7 +31,7 @@ class Form(QMainWindow):
 
         self.ui.tabWidget.setCurrentIndex(0)
         self.ui.text_subject.addItems(config[list(config.keys())[0]])
-        self.ui.text_config.addItems(list(config.keys())[1:])
+        self.ui.text_config.addItems(list(config.keys())[2:])
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
         self.change_config()
@@ -44,11 +44,16 @@ class Form(QMainWindow):
             try:
                 if key == keyboard.Key.esc:
                     copy_to_clipboard()
+                    if not self.ui.bu_top.isChecked():
+                        self.activateWindow()
                     self.signal.emit((self.append_text,))
                 elif key == keyboard.Key.caps_lock:
                     copy_to_clipboard()
+                    if not self.ui.bu_top.isChecked():
+                        self.activateWindow()
                     content = clipboard.paste()
                     content = process_new_line(content)
+                    self.showNormal()
                     self.signal.emit((self.ui.text_content.setPlainText, content))
                     self.signal.emit((self.send,))
             except AttributeError:
@@ -159,6 +164,8 @@ if __name__ == '__main__':
     app = QApplication()
     app.setStyle(QStyleFactory.create('Fusion'))
     form = Form()
-    form.setWindowFlags(Qt.WindowStaysOnTopHint)
+    if config['置顶']:
+        form.setWindowFlags(Qt.WindowStaysOnTopHint)
+        form.ui.bu_top.setChecked(True)
     form.show()
     app.exec_()
