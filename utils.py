@@ -1,5 +1,6 @@
 from openai import OpenAI
 from pynput import keyboard
+from pynput import mouse
 import time
 import re
 
@@ -9,11 +10,7 @@ prompt_template = '你擅长学术论文翻译{title}{subject}'
 def llm(url, key, model, prompt, query):
     client = OpenAI(api_key=key, base_url=url)
     messages = [{'role': 'system', 'content': prompt}, {'role': 'user', 'content': query}]
-    ret = client.chat.completions.create(model=model,
-                                         messages=messages,
-                                         stream=True,
-                                         stream_options={"include_usage": True},
-                                         temperature=0)
+    ret = client.chat.completions.create(model=model, messages=messages, stream=True, stream_options={"include_usage": True}, temperature=0)
     return ret
 
 
