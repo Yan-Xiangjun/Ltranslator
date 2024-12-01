@@ -12,6 +12,7 @@ if not os.path.exists('ltrans_env'):
 
 print('安装依赖库……')
 pip_executable = '.\\ltrans_env\\Scripts\\pip3' if os_type == 'Windows' else './ltrans_env/bin/pip3'
+os.system(f'{pip_executable} install -U -i https://mirrors.ustc.edu.cn/pypi/simple pip')
 os.system(f'{pip_executable} install -i https://mirrors.ustc.edu.cn/pypi/simple wheel')
 os.system(f'{pip_executable} install -i https://mirrors.ustc.edu.cn/pypi/simple openai pyside2 pynput pyperclip pyyaml')
 
