@@ -96,35 +96,33 @@ class Ui_MainWindow(object):
 
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.verticalLayout = QVBoxLayout(self.tab)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.tab_3 = QWidget()
+        self.tab_3.setObjectName(u"tab_3")
+        self.verticalLayout_5 = QVBoxLayout(self.tab_3)
+        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.layout_title = QHBoxLayout()
         self.layout_title.setObjectName(u"layout_title")
-        self.label_title = QLabel(self.tab)
+        self.label_title = QLabel(self.tab_3)
         self.label_title.setObjectName(u"label_title")
 
         self.layout_title.addWidget(self.label_title)
 
-        self.text_title = QLineEdit(self.tab)
+        self.text_title = QLineEdit(self.tab_3)
         self.text_title.setObjectName(u"text_title")
 
         self.layout_title.addWidget(self.text_title)
 
 
-        self.verticalLayout_3.addLayout(self.layout_title)
+        self.verticalLayout_5.addLayout(self.layout_title)
 
         self.layout_subject = QHBoxLayout()
         self.layout_subject.setObjectName(u"layout_subject")
-        self.label_subject = QLabel(self.tab)
+        self.label_subject = QLabel(self.tab_3)
         self.label_subject.setObjectName(u"label_subject")
 
         self.layout_subject.addWidget(self.label_subject)
 
-        self.text_subject = QComboBox(self.tab)
+        self.text_subject = QComboBox(self.tab_3)
         self.text_subject.setObjectName(u"text_subject")
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
@@ -136,14 +134,33 @@ class Ui_MainWindow(object):
         self.layout_subject.addWidget(self.text_subject)
 
 
-        self.verticalLayout_3.addLayout(self.layout_subject)
+        self.verticalLayout_5.addLayout(self.layout_subject)
 
-        self.bu_fold = QPushButton(self.tab)
+        self.bu_fold = QPushButton(self.tab_3)
         self.bu_fold.setObjectName(u"bu_fold")
         self.bu_fold.setMaximumSize(QSize(16777215, 20))
 
-        self.verticalLayout_3.addWidget(self.bu_fold)
+        self.verticalLayout_5.addWidget(self.bu_fold)
 
+        self.text_content = QPlainTextEdit(self.tab_3)
+        self.text_content.setObjectName(u"text_content")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.text_content.sizePolicy().hasHeightForWidth())
+        self.text_content.setSizePolicy(sizePolicy2)
+        self.text_content.setMaximumSize(QSize(16777215, 16777215))
+        self.text_content.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+
+        self.verticalLayout_5.addWidget(self.text_content)
+
+        self.tabWidget.addTab(self.tab_3, "")
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.verticalLayout = QVBoxLayout(self.tab)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.text_translation = QTextBrowser(self.tab)
         self.text_translation.setObjectName(u"text_translation")
         self.text_translation.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -158,15 +175,6 @@ class Ui_MainWindow(object):
         self.text_summary.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
         self.verticalLayout_3.addWidget(self.text_summary)
-
-        self.text_content = QPlainTextEdit(self.tab)
-        self.text_content.setObjectName(u"text_content")
-        sizePolicy1.setHeightForWidth(self.text_content.sizePolicy().hasHeightForWidth())
-        self.text_content.setSizePolicy(sizePolicy1)
-        self.text_content.setMaximumSize(QSize(16777215, 150))
-        self.text_content.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
-
-        self.verticalLayout_3.addWidget(self.text_content)
 
 
         self.verticalLayout.addLayout(self.verticalLayout_3)
@@ -252,8 +260,6 @@ class Ui_MainWindow(object):
         self.bu_send.clicked.connect(MainWindow.send)
         self.bu_top.clicked.connect(MainWindow.change_top)
         self.text_config.currentIndexChanged.connect(MainWindow.change_config)
-        self.bu_fold.clicked.connect(MainWindow.change_fold)
-        self.bu_clear.clicked.connect(self.text_content.clear)
         self.bu_summary.clicked.connect(MainWindow.change_summary)
 
         self.tabWidget.setCurrentIndex(0)
@@ -273,7 +279,8 @@ class Ui_MainWindow(object):
         self.label_title.setText(QCoreApplication.translate("MainWindow", u"\u6807\u9898", None))
         self.label_subject.setText(QCoreApplication.translate("MainWindow", u"\u5b66\u79d1", None))
         self.bu_fold.setText(QCoreApplication.translate("MainWindow", u"\ufe3f", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u7ffb\u8bd1", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u539f\u6587", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u8bd1\u6587", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u914d\u7f6e", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"api\u5730\u5740", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u6a21\u578b", None))

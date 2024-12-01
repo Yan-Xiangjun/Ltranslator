@@ -11,8 +11,8 @@ Xtranslator的Windows版虽然提供了大模型翻译功能，但截至2024-10-
 
 Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操作方式与Xtranslator相似，但支持任何具有OpenAI-compatible API的云端大模型和本地大模型，支持Windows、Linux和Mac系统，可以成为Xtranslator的开源平替。
 
-![截图](./screenshot.png)
-（图中论文：Vaswani A, Shazeer N, Parmar N, et al. Attention is All you Need: NIPS, Long Beach, 2017[C].）
+<!--![截图](./screenshot.png)-->
+<!--（图中论文：Vaswani A, Shazeer N, Parmar N, et al. Attention is All you Need: NIPS, Long Beach, 2017[C].）-->
 
 #### 软件架构
 使用Python中的openai库调用大语言模型

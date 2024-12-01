@@ -45,6 +45,7 @@ class Form(QMainWindow):
                 mouse_position = mouse.Controller().position
                 if key == keyboard.Key.esc:
                     copy_to_clipboard()
+                    self.ui.tabWidget.setCurrentIndex(0)
                     if not self.ui.bu_top.isChecked():
                         self.move(mouse_position[0], mouse_position[1])
                         self.activateWindow()
@@ -65,6 +66,7 @@ class Form(QMainWindow):
         self.listener.start()
 
     def send(self):
+        self.ui.tabWidget.setCurrentIndex(1)
         content = self.ui.text_content.toPlainText().strip()
         if content == '' or content == self.last_content:
             return

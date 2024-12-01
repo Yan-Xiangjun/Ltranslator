@@ -181,64 +181,90 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>原文</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <layout class="QHBoxLayout" name="layout_title">
+          <item>
+           <widget class="QLabel" name="label_title">
+            <property name="text">
+             <string>标题</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="text_title"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="layout_subject">
+          <item>
+           <widget class="QLabel" name="label_subject">
+            <property name="text">
+             <string>学科</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="text_subject">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="bu_fold">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>︿</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="text_content">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>翻译</string>
+        <string>译文</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <layout class="QHBoxLayout" name="layout_title">
-            <item>
-             <widget class="QLabel" name="label_title">
-              <property name="text">
-               <string>标题</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="text_title"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="layout_subject">
-            <item>
-             <widget class="QLabel" name="label_subject">
-              <property name="text">
-               <string>学科</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="text_subject">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="editable">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QPushButton" name="bu_fold">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>︿</string>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QTextBrowser" name="text_translation">
             <property name="verticalScrollBarPolicy">
@@ -248,25 +274,6 @@
           </item>
           <item>
            <widget class="QTextBrowser" name="text_summary">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOn</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPlainTextEdit" name="text_content">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -414,38 +421,6 @@
     <hint type="destinationlabel">
      <x>404</x>
      <y>7</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>bu_fold</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>change_fold()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>388</x>
-     <y>133</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>613</x>
-     <y>134</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>bu_clear</sender>
-   <signal>clicked()</signal>
-   <receiver>text_content</receiver>
-   <slot>clear()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>25</x>
-     <y>933</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>173</x>
-     <y>861</y>
     </hint>
    </hints>
   </connection>
