@@ -1,4 +1,5 @@
 import os
+import sys
 import platform
 
 os_type = platform.system()
@@ -7,14 +8,15 @@ if os_type not in ['Windows', 'Darwin', 'Linux']:
     exit(1)
 
 print('创建虚拟环境……')
+python_path = sys.executable
 if not os.path.exists('ltrans_env'):
-    os.system(f'python3 -m venv ltrans_env')
+    os.system(f'{python_path} -m venv ltrans_env')
 
 print('安装依赖库……')
-pip_executable = '.\\ltrans_env\\Scripts\\pip3' if os_type == 'Windows' else './ltrans_env/bin/pip3'
-os.system(f'{pip_executable} install -U -i https://mirrors.ustc.edu.cn/pypi/simple pip')
-os.system(f'{pip_executable} install -i https://mirrors.ustc.edu.cn/pypi/simple wheel')
-os.system(f'{pip_executable} install -i https://mirrors.ustc.edu.cn/pypi/simple openai pyside2 pynput pyperclip pyyaml')
+pip_path = '.\\ltrans_env\\Scripts\\pip3' if os_type == 'Windows' else './ltrans_env/bin/pip3'
+os.system(f'{python_path} -m pip install -U -i https://mirrors.ustc.edu.cn/pypi/simple pip')
+os.system(f'{pip_path} install -i https://mirrors.ustc.edu.cn/pypi/simple wheel')
+os.system(f'{pip_path} install -i https://mirrors.ustc.edu.cn/pypi/simple openai pyside2 pynput pyperclip pyyaml')
 
 print('创建启动脚本……')
 this_dir = os.path.dirname(os.path.realpath(__file__))
