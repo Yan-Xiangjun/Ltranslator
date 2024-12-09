@@ -42,18 +42,23 @@ class Form(QMainWindow):
             if not self.ui.bu_switch.isChecked():
                 return
             try:
+                screen = QDesktopWidget().screenGeometry(self)
+                X, Y = screen.width(), screen.height()
                 mouse_position = mouse.Controller().position
+                x, y = mouse_position
+                x1, y1 = calc_window_pos(X, Y, x, y, self.width(), self.height())
+
                 if key == keyboard.Key.esc:
                     copy_to_clipboard()
                     self.ui.tabWidget.setCurrentIndex(0)
                     if not self.ui.bu_top.isChecked():
-                        self.move(mouse_position[0], mouse_position[1])
+                        self.move(x1, y1)
                         self.activateWindow()
                     self.signal.emit((self.append_text,))
                 elif key == keyboard.Key.caps_lock:
                     copy_to_clipboard()
                     if not self.ui.bu_top.isChecked():
-                        self.move(mouse_position[0], mouse_position[1])
+                        self.move(x1, y1)
                         self.activateWindow()
                     content = clipboard.paste()
                     content = process_new_line(content)
