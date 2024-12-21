@@ -28,7 +28,7 @@ os.system(f'{scripts_path}pip3 install -i {url} wheel')
 os.system(f'{scripts_path}pip3 install -i {url} -r requirements.txt')
 
 print('pyinstaller打包……')
-os.system(f'{scripts_path}pyinstaller main.py')
+os.system(f'{scripts_path}pyinstaller -y main.py')
 
 print('复制配置文件……')
 shutil.copy('config.yml', os.path.join('dist', 'main', 'config.yml'))

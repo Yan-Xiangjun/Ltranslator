@@ -11,23 +11,22 @@ Xtranslator的Windows版虽然提供了大模型翻译功能，但截至2024-10-
 
 Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操作方式与Xtranslator相似，但支持任何具有OpenAI-compatible API的云端大模型和本地大模型，支持Windows、Linux和Mac系统，可以成为Xtranslator的开源平替。
 
-<!--![截图](./screenshot.png)-->
-<!--（图中论文：Vaswani A, Shazeer N, Parmar N, et al. Attention is All you Need: NIPS, Long Beach, 2017[C].）-->
 
 #### 软件架构
-使用Python中的openai库调用大语言模型
-使用pyside2库搭建用户界面
-使用pynput库监听快捷键是否被按下
-使用pyperclip库读取剪贴板内容
-使用pyyaml库读取配置文件
+1.  使用Python中的`openai`库调用大语言模型
+2.  使用`pyqt5`库搭建用户界面
+3.  使用`pynput`库监听快捷键是否被按下
+4.  使用`pyperclip`库读取剪贴板内容
+5.  使用`pyyaml`库读取配置文件
+6.  使用`pyinstaller`库打包应用程序
 
 
-#### 安装教程
+#### 如何生成可执行文件
 
-1.  安装[Python](https://www.python.org/) 3.6≤版本≤3.10（对于Linux系统，请确保Python中安装了pip和venv两个模块，并在系统中安装了xclip）
+1.  安装[Python](https://www.python.org/) 版本≥3.8（对于Linux系统，请确保Python中安装了pip和venv两个模块）
 2.  下载本项目，在项目所在文件夹内打开终端
-3.  `python3 install.py`
-4.  安装完成后，双击“Ltranslator启动器”即可运行（在mac系统中，为实现通过按键触发相应函数，脚本需要以管理员权限运行，因此会提示输入密码。在Linux系统中，如果双击“Ltranslator启动器”后执行的操作是显示该文件的内容而不是启动翻译器，请修改文件管理器的设置，例如，对于gnome桌面自带的Nautilus文件管理器，请在“首选项”-“行为”-“可执行文本文件”中选中“每次都询问”或“打开可执行文本文件时运行它们”。）
+3.  执行命令：`python build.py [env_path]`，其中`env_path`参数为可选参数，用于指定虚拟环境`ltrans_env`的位置。如果不指定，对于Windows，则会在`C:\Users\你的用户名`文件夹下创建虚拟环境，对于mac和Linux系统，则为当前用户的`/home`目录
+4.  在`./dist/main`目录下可以找到生成的可执行文件
 
 #### 使用说明
 

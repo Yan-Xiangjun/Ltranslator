@@ -1,5 +1,5 @@
 openai
-pyside2
+pyqt5
 pynput
 pyperclip
 pyyaml

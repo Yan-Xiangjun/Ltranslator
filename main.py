@@ -6,9 +6,13 @@ from threading import Lock
 import yaml
 from time import time
 import os
-import PySide2
+import PyQt5
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import pyqtSignal as Signal
+from PyQt5.QtGui import *
 
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = find_plugin_path(PySide2)
+os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = find_plugin_path(PyQt5)
 lock = Lock()
 
 
@@ -175,9 +179,8 @@ class Form(QMainWindow):
 
 
 if __name__ == '__main__':
-    app = QApplication()
+    app = QApplication([])
     app.setStyle(QStyleFactory.create('Fusion'))
     form = Form()
-
     form.show()
     app.exec_()
