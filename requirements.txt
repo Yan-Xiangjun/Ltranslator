@@ -1,0 +1,6 @@
+openai
+pyside2
+pynput
+pyperclip
+pyyaml
+pyinstaller

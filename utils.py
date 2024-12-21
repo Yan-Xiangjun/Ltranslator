@@ -3,6 +3,17 @@ from pynput import keyboard
 from pynput import mouse
 import time
 import re
+import os
+
+
+def find_plugin_path(qt_module):
+    dirname = os.path.dirname(qt_module.__file__)
+    for root, dirs, files in os.walk(dirname):
+        if 'platforms' in dirs:
+            plugin_path = os.path.join(root, 'platforms')
+            break
+    return plugin_path
+
 
 prompt_template = '你擅长学术论文翻译{title}{subject}'
 

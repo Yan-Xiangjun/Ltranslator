@@ -8,12 +8,7 @@ from time import time
 import os
 import PySide2
 
-dirname = os.path.dirname(PySide2.__file__)
-for root, dirs, files in os.walk(dirname):
-    if 'platforms' in dirs:
-        plugin_path = os.path.join(root, 'platforms')
-        break
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = plugin_path
+os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = find_plugin_path(PySide2)
 lock = Lock()
 
 
@@ -28,7 +23,7 @@ class Form(QMainWindow):
         self.signal.connect(lambda x: x[0](*x[1:]) if len(x) > 1 else x[0]())
 
         self.ui.tabWidget.setCurrentIndex(0)
-        with open('config.yaml', 'r', encoding='utf-8') as f:
+        with open('config.yml', 'r', encoding='utf-8') as f:
             s = f.read()
             self.ui.text_config_file.setPlainText(s)
             self.config = yaml.full_load(s)
@@ -174,7 +169,7 @@ class Form(QMainWindow):
         self.ui.text_content.moveCursor(QTextCursor.End)
 
     def save_config(self):
-        with open('config.yaml', 'w', encoding='utf-8') as f:
+        with open('config.yml', 'w', encoding='utf-8') as f:
             f.write(self.ui.text_config_file.toPlainText())
         QMessageBox.information(self, '提示', '已保存，重启后生效！')
 
