@@ -30,3 +30,9 @@ def process_new_line(content: str) -> str:
     content = re.sub(r'(?<![.!?])\r', ' ', content)
     content = re.sub(r'(?<![.!?\r])\n', ' ', content)
     return content
+
+
+def calc_window_pos(X, Y, x, y, w, h):
+    x1 = x if X - x >= w else X - w
+    y1 = y if Y - y >= h else Y - h
+    return x1, y1
