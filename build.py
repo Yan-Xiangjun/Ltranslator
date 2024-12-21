@@ -31,6 +31,6 @@ print('pyinstaller打包……')
 os.system(f'{scripts_path}pyinstaller main.py')
 
 print('复制配置文件……')
-shutil.copy('config.json', os.path.join('dist', 'config.yml'))
+shutil.copy('config.yml', os.path.join('dist', 'main', 'config.yml'))
 
 print('完成！')
