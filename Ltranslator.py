@@ -247,6 +247,29 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addLayout(self.horizontalLayout_8)
 
+        self.horizontalLayout_10 = QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.label_9 = QLabel(self.tab_2)
+        self.label_9.setObjectName(u"label_9")
+
+        self.horizontalLayout_10.addWidget(self.label_9)
+
+        self.bu_save_config = QPushButton(self.tab_2)
+        self.bu_save_config.setObjectName(u"bu_save_config")
+        sizePolicy.setHeightForWidth(self.bu_save_config.sizePolicy().hasHeightForWidth())
+        self.bu_save_config.setSizePolicy(sizePolicy)
+        self.bu_save_config.setMaximumSize(QSize(50, 16777215))
+
+        self.horizontalLayout_10.addWidget(self.bu_save_config)
+
+
+        self.verticalLayout_4.addLayout(self.horizontalLayout_10)
+
+        self.text_config_file = QPlainTextEdit(self.tab_2)
+        self.text_config_file.setObjectName(u"text_config_file")
+
+        self.verticalLayout_4.addWidget(self.text_config_file)
+
         self.tabWidget.addTab(self.tab_2, "")
 
         self.horizontalLayout_3.addWidget(self.tabWidget)
@@ -261,6 +284,7 @@ class Ui_MainWindow(object):
         self.bu_top.clicked.connect(MainWindow.change_top)
         self.text_config.currentIndexChanged.connect(MainWindow.change_config)
         self.bu_summary.clicked.connect(MainWindow.change_summary)
+        self.bu_save_config.clicked.connect(MainWindow.save_config)
 
         self.tabWidget.setCurrentIndex(0)
 
@@ -281,10 +305,12 @@ class Ui_MainWindow(object):
         self.bu_fold.setText(QCoreApplication.translate("MainWindow", u"\ufe3f", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"\u539f\u6587", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"\u8bd1\u6587", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u914d\u7f6e", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"api\u5730\u5740", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u6a21\u578b", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"api key", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u6a21\u578b\u670d\u52a1\uff1a", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"api\u5730\u5740\uff1a", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"\u6a21\u578b\u540d\u79f0\uff1a", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"api key\uff1a", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"\u914d\u7f6e\u6587\u4ef6\uff1a", None))
+        self.bu_save_config.setText(QCoreApplication.translate("MainWindow", u"\u4fdd\u5b58", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e", None))
     # retranslateUi
 

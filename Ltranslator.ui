@@ -305,7 +305,7 @@
           <item>
            <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>配置</string>
+             <string>当前模型服务：</string>
             </property>
            </widget>
           </item>
@@ -329,7 +329,7 @@
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>api地址</string>
+             <string>api地址：</string>
             </property>
            </widget>
           </item>
@@ -343,7 +343,7 @@
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>模型</string>
+             <string>模型名称：</string>
             </property>
            </widget>
           </item>
@@ -357,7 +357,7 @@
           <item>
            <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>api key</string>
+             <string>api key：</string>
             </property>
            </widget>
           </item>
@@ -365,6 +365,39 @@
            <widget class="QLineEdit" name="text_key"/>
           </item>
          </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>配置文件：</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="bu_save_config">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>保存</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="text_config_file"/>
         </item>
        </layout>
       </widget>
@@ -415,8 +448,8 @@
    <slot>change_config()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>51</y>
+     <x>344</x>
+     <y>77</y>
     </hint>
     <hint type="destinationlabel">
      <x>404</x>
@@ -440,6 +473,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>bu_save_config</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>save_config()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>570</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>613</x>
+     <y>254</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>send()</slot>
@@ -448,5 +497,6 @@
   <slot>change_config()</slot>
   <slot>change_fold()</slot>
   <slot>append_text()</slot>
+  <slot>save_config()</slot>
  </slots>
 </ui>

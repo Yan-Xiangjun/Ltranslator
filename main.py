@@ -15,8 +15,6 @@ for root, dirs, files in os.walk(dirname):
         break
 os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = plugin_path
 lock = Lock()
-with open('config.yaml', 'r', encoding='utf-8') as f:
-    config = yaml.full_load(f)
 
 
 class Form(QMainWindow):
@@ -30,8 +28,15 @@ class Form(QMainWindow):
         self.signal.connect(lambda x: x[0](*x[1:]) if len(x) > 1 else x[0]())
 
         self.ui.tabWidget.setCurrentIndex(0)
-        self.ui.text_subject.addItems(config[list(config.keys())[0]])
-        self.ui.text_config.addItems(list(config.keys())[2:])
+        with open('config.yaml', 'r', encoding='utf-8') as f:
+            s = f.read()
+            self.ui.text_config_file.setPlainText(s)
+            self.config = yaml.full_load(s)
+        if self.config['置顶']:
+            self.setWindowFlags(Qt.WindowStaysOnTopHint)
+            self.ui.bu_top.setChecked(True)
+        self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
+        self.ui.text_config.addItems(list(self.config.keys())[2:])
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
         self.change_config()
@@ -132,9 +137,9 @@ class Form(QMainWindow):
         self.show()
 
     def change_config(self):
-        self.ui.text_url.setText(config[self.ui.text_config.currentText()]['url'])
-        self.ui.text_model.setText(config[self.ui.text_config.currentText()]['model'])
-        self.ui.text_key.setText(config[self.ui.text_config.currentText()]['key'])
+        self.ui.text_url.setText(self.config[self.ui.text_config.currentText()]['url'])
+        self.ui.text_model.setText(self.config[self.ui.text_config.currentText()]['model'])
+        self.ui.text_key.setText(self.config[self.ui.text_config.currentText()]['key'])
 
     def fold_ui(self):
         self.ui.bu_fold.setText('﹀')
@@ -163,13 +168,16 @@ class Form(QMainWindow):
         self.ui.text_content.setPlainText(content if content0 == '' else content0 + ' ' + content)
         self.ui.text_content.moveCursor(QTextCursor.End)
 
+    def save_config(self):
+        with open('config.yaml', 'w', encoding='utf-8') as f:
+            f.write(self.ui.text_config_file.toPlainText())
+        QMessageBox.information(self, '提示', '已保存，重启后生效！')
+
 
 if __name__ == '__main__':
     app = QApplication()
     app.setStyle(QStyleFactory.create('Fusion'))
     form = Form()
-    if config['置顶']:
-        form.setWindowFlags(Qt.WindowStaysOnTopHint)
-        form.ui.bu_top.setChecked(True)
+
     form.show()
     app.exec_()
