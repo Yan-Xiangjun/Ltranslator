@@ -1,0 +1,84 @@
+name: Build and Upload EXE on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build_windows:
+    runs-on: windows-2019
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: 打包
+        run: |
+          cd D:\a\ltranslator\ltranslator
+          python .\build.py && python -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+
+      - name: 上传EXE到Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./mydist.zip
+          asset_name: main-windows.zip
+          asset_content_type: application/octet-stream
+          
+  build_ubuntu:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: 打包
+        run: |
+          cd ~/work/ltranslator/ltranslator
+          python3 ./build.py && python3 -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+
+      - name: 上传EXE到Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./mydist.zip
+          asset_name: main-ubuntu.zip
+          asset_content_type: application/octet-stream
+
+  build_macos:
+    runs-on: macos-14
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+        
+      - name: 安装Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          
+      - name: 打包
+        run: |
+          cd ~/work/ltranslator/ltranslator
+          python3 ./build.py && python3 -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+
+      - name: 上传EXE到Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./mydist.zip
+          asset_name: main-macos.zip
+          asset_content_type: application/octet-stream
