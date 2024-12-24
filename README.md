@@ -21,8 +21,10 @@ Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操
 6.  使用`pyinstaller`库打包应用程序
 
 
-#### 如何生成可执行文件
+#### 如何安装
+方法一（推荐）：从本项目Github的release页面下载zip压缩包
 
+方法二：按照下列步骤自行生成可执行文件
 1.  安装[Python](https://www.python.org/) 版本≥3.8（对于Linux系统，请确保Python中安装了pip和venv两个模块）
 2.  下载本项目，在项目所在文件夹内打开终端
 3.  执行命令：`python build.py [env_path]`，其中`env_path`参数为可选参数，用于指定虚拟环境`ltrans_env`的位置。如果不指定，对于Windows，则会在`C:\Users\你的用户名`文件夹下创建虚拟环境，对于mac和Linux系统，则为当前用户的`/home`目录
