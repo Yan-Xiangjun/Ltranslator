@@ -25,12 +25,12 @@ def llm(url, key, model, prompt, query):
     return ret
 
 
-def copy_to_clipboard():
+def copy_to_clipboard(delay):
     control = keyboard.Controller()
     with control.pressed(keyboard.Key.ctrl):
         control.press('c')
         control.release('c')
-    time.sleep(0.1)
+    time.sleep(delay)
 
 
 def process_new_line(content: str) -> str:
@@ -47,3 +47,8 @@ def calc_window_pos(X, Y, x, y, w, h):
     x1 = x if X - x >= w else X - w
     y1 = y if Y - y >= h else Y - h
     return x1, y1
+
+
+word_prompt = '请直接写出这个词的音标和中文释义：{}，回复格式如下：/此处填入音标/ - [ 此处填入中文释义 ]\n例如：/ˈsaɪəns/ - [ 科学 ]'
+trans_prompt = '请将论文中的这些文字翻译成中文：{}'
+summary_prompt = '请用中文简要概括论文中这些文字的内容：\n{}\n注意，你的概括应简明扼要，准确反映主旨，字数不要超过150字。'

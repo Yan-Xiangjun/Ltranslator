@@ -36,7 +36,7 @@ class Form(QMainWindow):
             self.ui.bu_top.setChecked(True)
         self.resize(self.config['窗口宽度'], self.config['窗口高度'])
         self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
-        self.ui.text_config.addItems(list(self.config.keys())[4:])
+        self.ui.text_config.addItems(list(self.config.keys())[5:])
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
         self.change_config()
@@ -54,18 +54,14 @@ class Form(QMainWindow):
                 x1, y1 = calc_window_pos(X, Y, x, y, self.width(), self.height())
 
                 if key == keyboard.Key.esc:
-                    copy_to_clipboard()
+                    copy_to_clipboard(self.config['复制后延迟（秒）'])
                     self.ui.tabWidget.setCurrentIndex(0)
-                    if not self.ui.bu_top.isChecked():
-                        self.move(x1, y1)
-                        self.showNormal()
-                        self.activateWindow()
+                    self.move_and_pop(x1, y1)
                     self.signal.emit((self.append_text,))
                 elif key == keyboard.Key.caps_lock:
-                    copy_to_clipboard()
-                    if not self.ui.bu_top.isChecked():
-                        self.move(x1, y1)
-                        self.activateWindow()
+                    copy_to_clipboard(self.config['复制后延迟（秒）'])
+                    self.ui.tabWidget.setCurrentIndex(1)
+                    self.move_and_pop(x1, y1)
                     content = clipboard.paste()
                     content = process_new_line(content)
                     self.signal.emit((self.ui.text_content.setPlainText, content))
@@ -75,6 +71,12 @@ class Form(QMainWindow):
 
         self.listener = keyboard.Listener(on_press=on_press)
         self.listener.start()
+
+    def move_and_pop(self, x, y):
+        if not self.ui.bu_top.isChecked():
+            self.move(x, y)
+            self.showNormal()
+            self.activateWindow()
 
     def send(self):
         self.ui.tabWidget.setCurrentIndex(1)
@@ -101,35 +103,33 @@ class Form(QMainWindow):
                 ret = llm(url, key, model, prompt, query)
                 time0 = time()
                 for chunk in ret:
-                    # print(chunk)
-                    if len(chunk.choices) > 0:
+                    if len(chunk.choices) != 0 and chunk.choices[0].delta.content is not None:
                         response = chunk.choices[0].delta.content
                         if response is not None:
                             self.signal.emit((control.insertPlainText, response))
                         if self.ui.bu_scroll.isChecked():
                             self.signal.emit((control.moveCursor, QTextCursor.End))
+                self.show_usage(chunk, time0)
 
-                    if chunk.usage is not None and chunk.usage.completion_tokens != 0:
-                        with lock:
-                            status = self.ui.statusbar.currentMessage().split(' ')
-                            status[2] = str(int(status[2]) + int(chunk.usage.prompt_tokens))
-                            status[4] = str(int(status[4]) + int(chunk.usage.completion_tokens))
-                            # print(time() - time0)
-                            status[6] = f'{int(chunk.usage.completion_tokens) / (time() - time0):.2f}'
-                            self.signal.emit((self.ui.statusbar.showMessage, ' '.join(status)))
             except Exception as e:
                 self.signal.emit((control.setPlainText, str(e)))
 
         if len(content.split(' ')) == 1:
-            Thread(target=do_translate,
-                   args=(self.ui.text_translation,
-                         f'请直接写出这个词的音标和中文释义：{content}，回复格式如下：/此处填入音标/ - [ 此处填入中文释义 ]\n例如：/ˈsaɪəns/ - [ 科学 ]')).start()
+            Thread(target=do_translate, args=(self.ui.text_translation, word_prompt.format(content))).start()
             return
-        Thread(target=do_translate, args=(self.ui.text_translation, f'请将论文中的这些文字翻译成中文：{content}')).start()
+        Thread(target=do_translate, args=(self.ui.text_translation, trans_prompt.format(content))).start()
         if summary:
-            Thread(target=do_translate,
-                   args=(self.ui.text_summary, f'请用中文简要概括论文中这些文字的内容：\n{content}\n注意，你的概括应简明扼要，准确反映主旨，字数不要超过150字。')).start()
+            Thread(target=do_translate, args=(self.ui.text_summary, summary_prompt.format(content))).start()
         self.can_remove = True
+
+    def show_usage(self, chunk, time0):
+        with lock:
+            status = self.ui.statusbar.currentMessage().split(' ')
+            status[2] = str(int(status[2]) + int(chunk.usage.prompt_tokens))
+            status[4] = str(int(status[4]) + int(chunk.usage.completion_tokens))
+            # print(time() - time0)
+            status[6] = f'{int(chunk.usage.completion_tokens) / (time() - time0):.2f}'
+            self.signal.emit((self.ui.statusbar.showMessage, ' '.join(status)))
 
     def change_summary(self):
         self.ui.text_summary.setVisible(self.ui.bu_summary.isChecked())

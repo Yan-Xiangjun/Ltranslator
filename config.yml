@@ -5,6 +5,7 @@
 置顶: true
 窗口宽度: 600
 窗口高度: 900
+复制后延迟（秒）: 0.2
 GLM:
   key: key
   model: glm-4-air
@@ -21,6 +22,14 @@ deepseek:
   key: key
   model: 4.0Ultra
   url: https://spark-api-open.xf-yun.com/v1
+字节:
+  key: key
+  model: endpoint_id
+  url: https://ark.cn-beijing.volces.com/api/v3
+腾讯:
+  key: key
+  model: hunyuan-standard-256K
+  url: https://api.hunyuan.cloud.tencent.com/v1
 本地:
   key: key
   model: model
