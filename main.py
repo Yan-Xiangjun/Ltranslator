@@ -34,8 +34,9 @@ class Form(QMainWindow):
         if self.config['置顶']:
             self.setWindowFlags(Qt.WindowStaysOnTopHint)
             self.ui.bu_top.setChecked(True)
+        self.resize(self.config['窗口宽度'], self.config['窗口高度'])
         self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
-        self.ui.text_config.addItems(list(self.config.keys())[2:])
+        self.ui.text_config.addItems(list(self.config.keys())[4:])
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
         self.change_config()
@@ -57,6 +58,7 @@ class Form(QMainWindow):
                     self.ui.tabWidget.setCurrentIndex(0)
                     if not self.ui.bu_top.isChecked():
                         self.move(x1, y1)
+                        self.showNormal()
                         self.activateWindow()
                     self.signal.emit((self.append_text,))
                 elif key == keyboard.Key.caps_lock:
@@ -95,11 +97,11 @@ class Form(QMainWindow):
         self.fold_ui()
 
         def do_translate(control: QTextBrowser, query: str):
-            ret = llm(url, key, model, prompt, query)
-            time0 = time()
-            for chunk in ret:
-                # print(chunk)
-                try:
+            try:
+                ret = llm(url, key, model, prompt, query)
+                time0 = time()
+                for chunk in ret:
+                    # print(chunk)
                     if len(chunk.choices) > 0:
                         response = chunk.choices[0].delta.content
                         if response is not None:
@@ -115,9 +117,8 @@ class Form(QMainWindow):
                             # print(time() - time0)
                             status[6] = f'{int(chunk.usage.completion_tokens) / (time() - time0):.2f}'
                             self.signal.emit((self.ui.statusbar.showMessage, ' '.join(status)))
-                except Exception as e:
-                    self.signal.emit((control.setPlainText, str(e)))
-                    break
+            except Exception as e:
+                self.signal.emit((control.setPlainText, str(e)))
 
         if len(content.split(' ')) == 1:
             Thread(target=do_translate,
@@ -176,6 +177,17 @@ class Form(QMainWindow):
         with open('config.yml', 'w', encoding='utf-8') as f:
             f.write(self.ui.text_config_file.toPlainText())
         QMessageBox.information(self, '提示', '已保存，重启后生效！')
+
+    def closeEvent(self, event):
+        ret = QMessageBox.question(self, '提示', '退出还是最小化？点击“Yes”退出，点击“No”最小化。', QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
+                                   QMessageBox.Yes)
+        if ret == QMessageBox.Yes:
+            event.accept()
+        elif ret == QMessageBox.No:
+            event.ignore()
+            self.showMinimized()
+        else:
+            event.ignore()
 
 
 if __name__ == '__main__':

@@ -3,6 +3,8 @@
     - Artificial Intelligence
     - Civil Engineering
 置顶: true
+窗口宽度: 600
+窗口高度: 900
 GLM:
   key: key
   model: glm-4-air
