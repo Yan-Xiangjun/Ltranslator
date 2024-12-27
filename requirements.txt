@@ -3,4 +3,4 @@ pyqt5
 pynput
 pyperclip
 pyyaml
-pyinstaller
+pyinstaller==6.2.0
