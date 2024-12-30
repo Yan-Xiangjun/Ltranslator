@@ -4,7 +4,7 @@ import pyperclip as clipboard
 from threading import Thread
 from threading import Lock
 import yaml
-from time import time
+from time import time, sleep
 import os
 import PyQt5
 from PyQt5.QtWidgets import *
@@ -54,13 +54,15 @@ class Form(QMainWindow):
                 x1, y1 = calc_window_pos(X, Y, x, y, self.width(), self.height())
 
                 if key == keyboard.Key.esc:
-                    copy_to_clipboard(self.config['复制后延迟（秒）'])
+                    copy_to_clipboard()
                     self.ui.tabWidget.setCurrentIndex(0)
+                    sleep(self.config['复制后延迟（秒）'])
                     self.move_and_pop(x1, y1)
                     self.signal.emit((self.append_text,))
                 elif key == keyboard.Key.caps_lock:
-                    copy_to_clipboard(self.config['复制后延迟（秒）'])
+                    copy_to_clipboard()
                     self.ui.tabWidget.setCurrentIndex(1)
+                    sleep(self.config['复制后延迟（秒）'])
                     self.move_and_pop(x1, y1)
                     content = clipboard.paste()
                     content = process_new_line(content)

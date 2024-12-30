@@ -28,7 +28,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./mydist.zip
-          asset_name: main-windows.zip
+          asset_name: main-windows-server-2019.zip
           asset_content_type: application/octet-stream
           
   build_ubuntu:
@@ -54,7 +54,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./mydist.zip
-          asset_name: main-ubuntu.zip
+          asset_name: main-ubuntu-20-04.zip
           asset_content_type: application/octet-stream
 
   build_macos:
@@ -80,5 +80,5 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./mydist.zip
-          asset_name: main-macos.zip
+          asset_name: main-macos-14.zip
           asset_content_type: application/octet-stream

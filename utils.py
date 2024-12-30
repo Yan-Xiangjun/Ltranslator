@@ -1,7 +1,6 @@
 from openai import OpenAI
 from pynput import keyboard
 from pynput import mouse
-import time
 import re
 import os
 
@@ -25,12 +24,11 @@ def llm(url, key, model, prompt, query):
     return ret
 
 
-def copy_to_clipboard(delay):
+def copy_to_clipboard():
     control = keyboard.Controller()
     with control.pressed(keyboard.Key.ctrl):
         control.press('c')
         control.release('c')
-    time.sleep(delay)
 
 
 def process_new_line(content: str) -> str:
