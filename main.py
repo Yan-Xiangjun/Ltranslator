@@ -140,7 +140,7 @@ class Form(QMainWindow):
 
     def change_top(self):
         self.hide()
-        self.setWindowFlags(Qt.WindowStaysOnTopHint if self.ui.bu_top.isChecked() else Qt.Widget)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint if self.ui.bu_top.isChecked() else Qt.Window)
         self.show()
 
     def change_config(self):
@@ -181,8 +181,12 @@ class Form(QMainWindow):
         QMessageBox.information(self, '提示', '已保存，重启后生效！')
 
     def closeEvent(self, event):
-        ret = QMessageBox.question(self, '提示', '退出还是最小化？点击“Yes”退出，点击“No”最小化。', QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel,
-                                   QMessageBox.Yes)
+        msgbox = QMessageBox(QMessageBox.Question, '提示', '退出还是最小化？', QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel, self)
+        msgbox.setDefaultButton(QMessageBox.Yes)
+        msgbox.button(QMessageBox.Yes).setText('退出')
+        msgbox.button(QMessageBox.No).setText('最小化')
+        msgbox.button(QMessageBox.Cancel).setText('取消')
+        ret = msgbox.exec_()
         if ret == QMessageBox.Yes:
             event.accept()
         elif ret == QMessageBox.No:
