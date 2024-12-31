@@ -44,6 +44,8 @@ jobs:
 
       - name: 打包
         run: |
+          Xvfb :0 -screen 0 1024x768x24 &
+          export DISPLAY=:0
           cd ~/work/Ltranslator/Ltranslator
           python3 ./build.py && python3 -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
 
