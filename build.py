@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 import platform
 import shutil
@@ -18,17 +19,17 @@ if len(sys.argv) >= 3:
 print('Creating a virtual environment ...')
 python_name = sys.executable[sys.executable.rfind('python'):]
 if not os.path.exists(env_path):
-    os.system(f'{python_name} -m venv {env_path}')
+    subprocess.run(f'{python_name} -m venv {env_path}', check=True)
 
 print('Installing dependencies ...')
 scripts_path = f'{env_path}\\Scripts\\' if os_type == 'Windows' else f'{env_path}/bin/'
 url = 'https://mirrors.ustc.edu.cn/pypi/simple'
-os.system(f"{scripts_path}{python_name} -m pip install -U -i {url} pip")
-os.system(f'{scripts_path}pip3 install -i {url} wheel')
-os.system(f'{scripts_path}pip3 install -i {url} -r requirements.txt')
+subprocess.run(f"{scripts_path}{python_name} -m pip install -U -i {url} pip", check=True)
+subprocess.run(f'{scripts_path}pip3 install -i {url} wheel', check=True)
+subprocess.run(f'{scripts_path}pip3 install -i {url} -r requirements.txt', check=True)
 
 print('Packing ...')
-os.system(f'{scripts_path}pyinstaller -y --noconsole main.py')
+subprocess.run(f'{scripts_path}pyinstaller -y --noconsole main.py', check=True)
 
 print('Copying configuration file ...')
 shutil.copy('config.yml', os.path.join('dist', 'main', 'config.yml'))

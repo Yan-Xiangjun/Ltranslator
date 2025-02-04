@@ -37,8 +37,21 @@
           <height>16777215</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>开/关</string>
+        </property>
         <property name="text">
-         <string>开</string>
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/开关.png</normaloff>icons/开关.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -62,8 +75,21 @@
           <height>16777215</height>
          </size>
         </property>
-        <property name="text">
+        <property name="toolTip">
          <string>置顶</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/去顶部.png</normaloff>icons/去顶部.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -87,8 +113,21 @@
           <height>16777215</height>
          </size>
         </property>
-        <property name="text">
+        <property name="toolTip">
          <string>滚动</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/跑步机1.png</normaloff>icons/跑步机1.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -112,8 +151,21 @@
           <height>16777215</height>
          </size>
         </property>
-        <property name="text">
+        <property name="toolTip">
          <string>摘要</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/压缩.png</normaloff>icons/压缩.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -137,8 +189,21 @@
           <height>16777215</height>
          </size>
         </property>
-        <property name="text">
+        <property name="toolTip">
          <string>发送</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons/发送.png</normaloff>icons/发送.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
         </property>
        </widget>
       </item>
@@ -212,6 +277,9 @@
             <width>16777215</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="toolTip">
+           <string>展开/折叠</string>
           </property>
           <property name="text">
            <string>︿</string>
@@ -397,8 +465,8 @@
    <slot>send()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>184</y>
+     <x>59</x>
+     <y>158</y>
     </hint>
     <hint type="destinationlabel">
      <x>72</x>
@@ -413,8 +481,8 @@
    <slot>change_top()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>76</y>
+     <x>51</x>
+     <y>65</y>
     </hint>
     <hint type="destinationlabel">
      <x>82</x>
@@ -429,8 +497,8 @@
    <slot>change_config()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>344</x>
-     <y>77</y>
+     <x>177</x>
+     <y>76</y>
     </hint>
     <hint type="destinationlabel">
      <x>404</x>
@@ -445,8 +513,8 @@
    <slot>change_summary()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>24</x>
-     <y>131</y>
+     <x>34</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>12</x>
@@ -461,12 +529,28 @@
    <slot>save_config()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>570</x>
-     <y>202</y>
+     <x>127</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
      <x>613</x>
      <y>254</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bu_fold</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>change_fold()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>544</x>
+     <y>119</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>595</x>
+     <y>127</y>
     </hint>
    </hints>
   </connection>
