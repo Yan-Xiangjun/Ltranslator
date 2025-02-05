@@ -35,5 +35,6 @@ subprocess.run(f'{scripts_path}pyinstaller -y --noconsole main.py', check=True, 
 
 print('Copying configuration file ...')
 shutil.copy('config.yml', os.path.join('dist', 'main', 'config.yml'))
+shutil.copytree('icons', os.path.join('dist', 'main', 'icons'))
 
 print('Done!')

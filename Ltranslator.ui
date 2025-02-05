@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>Ltranslator</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>icons/翻译.png</normaloff>icons/翻译.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
