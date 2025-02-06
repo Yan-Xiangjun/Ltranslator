@@ -22,13 +22,15 @@ Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操
 
 
 #### 安装
-方法一（推荐）：从本项目Github的release页面下载zip压缩包
+方法一（推荐）：从本项目Github的release页面下载7z压缩包
 
 方法二：按照下列步骤自行生成可执行文件
 1. 安装[Python](https://www.python.org/) 版本≥3.8（对于Linux系统，请确保Python中安装了pip和venv两个模块）
 2. 下载本项目，在项目所在文件夹内打开终端
 3. 执行命令：`python build.py [env_path]`，其中`env_path`参数为可选参数，用于指定虚拟环境`ltrans_env`的位置。如果不指定，对于Windows，则会在`C:\Users\你的用户名`文件夹下创建虚拟环境，对于mac和Linux系统，则为当前用户的`/home`目录
 4. 在`./dist/main`目录下可以找到生成的可执行文件，文件名为main
+
+注意，由于本软件需要读取剪贴板，所以在mac系统上请以管理员权限运行
 
 #### 配置
 1. 如果使用云端大模型，请在模型服务厂商处注册账号，申请API Key。启动翻译器，在“设置”选项卡中编辑配置文件，将模型厂商、api key、模型名称、url填入配置文件中，排在最前面的模型服务为软件的默认服务。点击“保存”，重启程序。配置文件中已经预先填写了以下模型服务：[智谱AI](https://open.bigmodel.cn/)、[DeepSeek](https://www.deepseek.com/)、[通义千问](https://www.aliyun.com/product/bailian)、[讯飞星火](https://xinghuo.xfyun.cn/sparkapi)、[字节豆包](https://www.volcengine.com/product/ark)、[腾讯混元](https://console.cloud.tencent.com/hunyuan/start)
