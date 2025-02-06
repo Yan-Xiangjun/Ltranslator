@@ -18,8 +18,10 @@ jobs:
 
       - name: 打包
         run: |
+          pip install py7zr
           cd D:\a\Ltranslator\Ltranslator
-          python .\build.py && python -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+          python .\build.py
+          py7zr c .\mydist.7z .\dist\main
 
       - name: 上传EXE到Release
         uses: actions/upload-release-asset@v1
@@ -27,8 +29,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./mydist.zip
-          asset_name: main-windows-server-2019.zip
+          asset_path: ./mydist.7z
+          asset_name: main-windows-server-2019.7z
           asset_content_type: application/octet-stream
           
   build_ubuntu:
@@ -44,10 +46,12 @@ jobs:
 
       - name: 打包
         run: |
+          pip install py7zr
           Xvfb :0 -screen 0 1024x768x24 &
           export DISPLAY=:0
           cd ~/work/Ltranslator/Ltranslator
-          python3 ./build.py && python3 -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+          python3 ./build.py
+          py7zr c ./mydist.7z ./dist/main
 
       - name: 上传EXE到Release
         uses: actions/upload-release-asset@v1
@@ -55,8 +59,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./mydist.zip
-          asset_name: main-ubuntu-20-04.zip
+          asset_path: ./mydist.7z
+          asset_name: main-ubuntu-20-04.7z
           asset_content_type: application/octet-stream
 
   build_macos:
@@ -72,8 +76,10 @@ jobs:
           
       - name: 打包
         run: |
+          pip install py7zr
           cd ~/work/Ltranslator/Ltranslator
-          python3 ./build.py && python3 -c "import shutil; shutil.make_archive('./mydist', 'zip', './dist/main')"
+          python3 ./build.py
+          py7zr c ./mydist.7z ./dist/main
 
       - name: 上传EXE到Release
         uses: actions/upload-release-asset@v1
@@ -81,6 +87,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./mydist.zip
-          asset_name: main-macos-14.zip
+          asset_path: ./mydist.7z
+          asset_name: main-macos-14.7z
           asset_content_type: application/octet-stream
