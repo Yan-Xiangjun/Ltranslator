@@ -5,6 +5,7 @@
 窗口宽度: 600
 窗口高度: 900
 复制后延迟（秒）: 0.2
+
 GLM:
   key: key
   model: glm-4-air
@@ -34,4 +35,4 @@ deepseek:
   model: model
   url: http://localhost:8080/v1
 
-
+代理端口: 127.0.0.1:7890
