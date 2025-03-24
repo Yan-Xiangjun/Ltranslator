@@ -37,13 +37,7 @@ class Form(QMainWindow):
         self.resize(self.config['窗口宽度'], self.config['窗口高度'])
         self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
 
-        # self.ui.text_config.addItems(list(self.config.keys())[5:]) (deprecated)
-        # only show the models with url, model, key
-        model_keys = []
-        for k, v in self.config.items():
-            if isinstance(v, dict) and {'url', 'model', 'key'} <= set(v.keys()):
-                model_keys.append(k)
-        self.ui.text_config.addItems(model_keys)
+        self.ui.text_config.addItems(list(self.config.keys())[6:]) 
 
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
