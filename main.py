@@ -36,13 +36,22 @@ class Form(QMainWindow):
             self.ui.bu_top.setChecked(True)
         self.resize(self.config['窗口宽度'], self.config['窗口高度'])
         self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
-        self.ui.text_config.addItems(list(self.config.keys())[5:])
+
+        self.ui.text_config.addItems(list(self.config.keys())[6:]) 
+
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
         self.change_config()
         self.last_content = ''
         self.can_remove = True
 
+        # add proxy option
+        self.proxy = self.config.get('代理端口', None)
+        if self.proxy:
+            os.environ['http_proxy'] = "http://" + self.proxy
+            os.environ['https_proxy'] = "http://" + self.proxy
+            print("You have enabled proxy. Proxy port is: ", self.proxy)
+        
         def on_press(key):
             if not self.ui.bu_switch.isChecked():
                 return
