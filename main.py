@@ -37,7 +37,7 @@ class Form(QMainWindow):
         self.resize(self.config['窗口宽度'], self.config['窗口高度'])
         self.ui.text_subject.addItems(self.config[list(self.config.keys())[0]])
 
-        self.ui.text_config.addItems(list(self.config.keys())[6:]) 
+        self.ui.text_config.addItems(list(self.config.keys())[6:])
 
         self.ui.statusbar.showMessage('<token消耗> 输入 0 输出 0 <推理速度> ? tokens/s')
         self.ui.text_summary.setVisible(False)
@@ -51,7 +51,7 @@ class Form(QMainWindow):
             os.environ['http_proxy'] = "http://" + self.proxy
             os.environ['https_proxy'] = "http://" + self.proxy
             print("You have enabled proxy. Proxy port is: ", self.proxy)
-        
+
         def on_press(key):
             if not self.ui.bu_switch.isChecked():
                 return
@@ -86,8 +86,8 @@ class Form(QMainWindow):
     def move_and_pop(self, x, y):
         if not self.ui.bu_top.isChecked():
             self.move(x, y)
-            self.showNormal()
             self.activateWindow()
+            self.showNormal()
 
     def send(self):
         self.ui.tabWidget.setCurrentIndex(1)
@@ -126,11 +126,14 @@ class Form(QMainWindow):
                 self.signal.emit((control.setPlainText, str(e)))
 
         if len(content.split(' ')) == 1:
-            Thread(target=do_translate, args=(self.ui.text_translation, word_prompt.format(content))).start()
+            Thread(target=do_translate,
+                   args=(self.ui.text_translation, word_prompt.format(content))).start()
             return
-        Thread(target=do_translate, args=(self.ui.text_translation, trans_prompt.format(content))).start()
+        Thread(target=do_translate,
+               args=(self.ui.text_translation, trans_prompt.format(content))).start()
         if summary:
-            Thread(target=do_translate, args=(self.ui.text_summary, summary_prompt.format(content))).start()
+            Thread(target=do_translate,
+                   args=(self.ui.text_summary, summary_prompt.format(content))).start()
         self.can_remove = True
 
     def show_usage(self, chunk, time0):
@@ -190,7 +193,8 @@ class Form(QMainWindow):
         QMessageBox.information(self, '提示', '已保存，重启后生效！')
 
     def closeEvent(self, event):
-        msgbox = QMessageBox(QMessageBox.Question, '提示', '退出还是最小化？', QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel, self)
+        msgbox = QMessageBox(QMessageBox.Question, '提示', '退出还是最小化？',
+                             QMessageBox.Yes | QMessageBox.No | QMessageBox.Cancel, self)
         msgbox.setDefaultButton(QMessageBox.Yes)
         msgbox.button(QMessageBox.Yes).setText('退出')
         msgbox.button(QMessageBox.No).setText('最小化')
