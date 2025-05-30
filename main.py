@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import pyqtSignal as Signal
 from PyQt5.QtGui import *
+import qdarktheme
 
 os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = find_plugin_path(PyQt5)
 lock = Lock()
@@ -48,9 +49,9 @@ class Form(QMainWindow):
         # add proxy option
         self.proxy = self.config.get('代理端口', None)
         if self.proxy:
-            os.environ['http_proxy'] = "http://" + self.proxy
-            os.environ['https_proxy'] = "http://" + self.proxy
-            print("You have enabled proxy. Proxy port is: ", self.proxy)
+            os.environ['http_proxy'] = f"http://127.0.0.1:{self.proxy}"
+            os.environ['https_proxy'] = f"http://127.0.0.1:{self.proxy}"
+            print("You have enabled proxy. Proxy port is:", self.proxy)
 
         def on_press(key):
             if not self.ui.bu_switch.isChecked():
@@ -211,7 +212,13 @@ class Form(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication([])
-    app.setStyle(QStyleFactory.create('Fusion'))
+    qdarktheme.setup_theme("light")
+    font = QFont()
+    font.setFamily(
+        "Microsoft YaHei, PingFang SC, Noto Sans CJK SC, Hiragino Sans GB, SimHei, Helvetica Neue, Arial, sans-serif"
+    )
+    font.setPointSize(9)
+    app.setFont(font)
     form = Form()
     form.show()
     app.exec_()
