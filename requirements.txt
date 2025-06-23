@@ -4,3 +4,5 @@ pynput
 pyperclip
 pyyaml
 pyinstaller==6.2.0
+pyqtdarktheme
+
