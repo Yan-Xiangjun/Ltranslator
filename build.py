@@ -30,6 +30,8 @@ sh(f'{scripts_path}pip3 install -i {url} wheel')
 sh(f'{scripts_path}pip3 install -i {url} -r requirements.txt')
 
 print('Packing ...')
+shutil.rmtree('dist', ignore_errors=True)
+shutil.rmtree('build', ignore_errors=True)
 sh(f'{scripts_path}pyinstaller -y --noconsole main.py')
 
 print('Copying configuration file ...')
