@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_windows:
-    runs-on: windows-2019
+    runs-on: windows-2022
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
@@ -30,11 +30,11 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./mydist.7z
-          asset_name: main-windows-server-2019.7z
+          asset_name: main-windows-server-2022.7z
           asset_content_type: application/octet-stream
           
   build_ubuntu:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
@@ -60,7 +60,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./mydist.7z
-          asset_name: main-ubuntu-20-04.7z
+          asset_name: main-ubuntu-22-04.7z
           asset_content_type: application/octet-stream
 
   build_macos:
