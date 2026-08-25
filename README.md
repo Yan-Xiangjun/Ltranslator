@@ -1,3 +1,5 @@
+
+
 # Ltranslator
 
 #### 介绍
@@ -59,8 +61,4 @@ Ltranslator则是一款完全基于大模型的跨平台文献翻译工具，操
 
 #### 新增功能
 
-- 现在支持使用代理，请在配置文件中正确填写代理地址，这样能确保在开了代理的情况下正常使用Ltranslator，避免`connection error`
-
-
-
-
+- 现在支持使用代理，请在配置文件中正确填写代理端口，这样能确保在开了代理的情况下正常使用Ltranslator，避免`connection error`
